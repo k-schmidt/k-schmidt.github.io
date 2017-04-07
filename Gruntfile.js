@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-	  cssmin : {
+      cssmin : {
         compress : {
             files : {
                 "assets/css/all.min.css" : ['assets/css/*.css']
