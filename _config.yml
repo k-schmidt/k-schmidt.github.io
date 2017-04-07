@@ -1,0 +1,47 @@
+# Dependencies
+markdown:         redcarpet
+redcarpet:
+  extensions:     [strikethrough,smart,with_toc_data]
+highlighter:      pygments
+
+# Permalinks
+permalink:        /posts/:title/
+
+# User Configuration
+title:            Kyle Schmidt
+tagline:          'Software Craftsman'
+description:      'Software Engineer interested in Data Applications, Python, Clojure, Emacs, Functional Programming, Free Software, and Distributed Systems.'
+url:              https://k-schmidt.github.io
+baseurl:          '/'
+paginate:         3
+excerpt_separator: '<br>'
+gems:
+- jekyll-mentions
+- jemoji
+- jekyll-redirect-from
+- jekyll-sitemap
+
+# Author Info
+author:
+  name:           'Kyle Schmidt'
+  url:            https://k-schmidt.github.io
+
+# Social Integration
+social:
+  twitter:        @Kyle_Schmidt
+  disqus:         kyleschmidt
+  addthis_pubid:  ra-58e78b704f9a52ca
+
+# Google Analytics Configuration
+# Proxy response must be in JSON and should have the fields - ga:pagePath, ga:pageview
+google_analytics:
+  tracking_id:      UA-74959127-1
+  super_proxy_url:  
+
+# Github
+github:
+  repo:           k-schmidt
+  feedback:       
+
+# Version Info
+version:          0.0.0
