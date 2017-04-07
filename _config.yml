@@ -28,7 +28,7 @@ author:
 
 # Social Integration
 social:
-  twitter:        @Kyle_Schmidt
+  twitter:        Kyle_Schmidt
   disqus:         kyleschmidt
   addthis_pubid:  ra-58e78b704f9a52ca
 
@@ -36,12 +36,12 @@ social:
 # Proxy response must be in JSON and should have the fields - ga:pagePath, ga:pageview
 google_analytics:
   tracking_id:      UA-74959127-1
-  super_proxy_url:  
+  super_proxy_url:
 
 # Github
 github:
   repo:           k-schmidt
-  feedback:       
+  feedback:
 
 # Version Info
 version:          0.0.0
