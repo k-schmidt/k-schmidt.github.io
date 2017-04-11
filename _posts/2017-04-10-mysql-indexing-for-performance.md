@@ -12,11 +12,11 @@ I just learned about indexing on a MySQL database at a fairly high-level and wil
 MySQL has many different kinds of indexes (full-text indexes, spatial indexes, TokuDB - fractal tree index, ScaleDB - Patricia Trie, InfiniDB - special logic) but for most use cases, InnoDB and MyISAM are the two most common.
 
 Until MySQL 5.5, the default index was MyISAM.
-MyISAM is good for analytical use cases because it is table-level locking which means two users cannot query the same table at the same time.
+MyISAM is good for analytical use cases because it has table-level locking which means two users cannot query the same table at the same time.
 Because of this, MyISAM can get away with not being [ACID compliant](https://en.wikipedia.org/wiki/ACID) as well as non-transactional.
 Furthermore, MyISAM doesn't support relational contraints like Foreign Keys which means that it is better to have wider tables in MyISAM rather than a [First Normal Form](https://en.wikipedia.org/wiki/Database_normalization) database.
 
-![InnoDB vs. MyISAM](./assets/images/mysql_indexing_for_performance/innodb_vs_myisam.png)
+![InnoDB vs. MyISAM]({{ site.url }}/assets/images/mysql_indexing_for_performance/innodb_vs_myisam.png)
 
 Both InnoDB and MyISAM leverage B-tree data structures to improve query speeds.
 In a B-tree index, values are stored in order and each leaf is at the same distance from the root level.
@@ -29,7 +29,7 @@ B-trees are used because it speeds up data access.
 Storage engines are able to traverse the tree from the root node to the leaf node with the help of pointers even though the locations of these nodes might be spread out in the computer's memory.
 We also see increased performance for full value ("Kyle Schmidt"), leftmost value or column prefix ("Kyle" from "Kyle Schmidt"), and range of values (1 to 99) query patterns as well as aiding our ORDER BY clauses because nodes point to each other in order (more to come).
 
-![Traversing Clustered B-Tree Indexes](./assets/images/mysql_indexing_for_performance/traversing_cluster_btree_index.png)
+![Traversing Clustered B-Tree Indexes]({{ site.url }}/assets/images/mysql_indexing_for_performance/traversing_cluster_btree_index.png)
 
 Sometimes a single node representing a key still doesn't offer the efficiency that we need.
 What if we want to store keys that are close in proximity such as employees of a certain profession?
@@ -57,7 +57,7 @@ We would need two different indexes over both of these columns in order to optim
 To carry-out our example with ```last_name``` being our secondary index and ```first_name``` as our primary index, the ```last_name``` index will **point** to the index for its corresponding ```first_name``` which will contain the data that it represents.
 Similarly, a ```last_name``` only query will require the secondary key index to find the appropriate ```last_name``` and then the pointer will jump back to the primary key index before data retrieval.
 
-![Traversing Clustered B-Tree Indexes](./assets/images/mysql_indexing_for_performance/primary_secondary_coordination.png)
+![Traversing Clustered B-Tree Indexes]({{ site.url }}/assets/images/mysql_indexing_for_performance/primary_secondary_coordination.png)
 
 Yet, there is one last type optimization that I want to talk about, Hash Indexes.
 Hash indexes are built on top of hash tables and increase query performance for _exact_ lookups.
@@ -67,7 +67,7 @@ Given an exact match of that row of data, the hash table will compute the hash o
 Generally, different keys generate different hash codes but if multiple values have the same hash code, then the value of the hash code in the hash table will be a linked list of row pointers.
 Hash indexes are even faster than B-trees when a key doesn't contain a linked list and effective since the table resides in _memory_.
 
-![Traversing Clustered B-Tree Indexes](./assets/images/mysql_indexing_for_performance/building_hash_index.png)
+![Traversing Clustered B-Tree Indexes]({{ site.url }}/assets/images/mysql_indexing_for_performance/building_hash_index.png)
 
 However, there are limitations to Hash indexes.
 Hash indexes only contains the hash code and pointers to a row of data, _not_ the data itself.
