@@ -4,7 +4,7 @@ layout: default
 
 <ul class="tags">
   {% for tag in page.tags %}
-    <li><a href="{{ site.baseurl }}tags.html#{{tag}}" class="tag">{{ tag }}</a></li>
+    <li><a href="{{ site.baseurl }}tags/#{{tag}}" class="tag">{{ tag }}</a></li>
   {% endfor %}
 </ul>
 
@@ -14,7 +14,7 @@ layout: default
     <span class="post-date" style="float: left;">{{ page.date | date_to_string }}</span>
     <span class="post-date" style="float: right;" id="ga-pageviews"></span>
   </div>
-  <div style="clear: both;"></div>​
+  <div style="clear: both;"></div>
 
   {{ content }}
 </div>
